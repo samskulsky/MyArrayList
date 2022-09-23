@@ -88,7 +88,7 @@ public class MyArrayList<E> {
 		shiftOneRightAtIndex(index);
 
 		internalArray[index] = obj;
-		
+
 		objectCount++;
 	}
 
@@ -176,37 +176,49 @@ public class MyArrayList<E> {
 				break;
 			}
 		}
-		
+
 		if (index != -1) {
 			remove(index);
 			return true;
 		}
-		
+
 		return false;
 	}
 
 	// This method will search list for all occurrences of obj and move them to the end
 	// of the list without disrupting the order of the other elements.
-	// O(n)
+	// O(n2)
 	// deal with nulls
+	@SuppressWarnings("unchecked")
 	public void moveToBack(E obj)
 	{
+		E[] occs = (E[])new Object[objectCount];
+
 		int occ = 0;
-		for (int i = 0; i < internalArray.length; i++) {
+		for (int i = 0; i < objectCount; i++) {
 			if (obj.equals(internalArray[i])) {
+				occs[occ] = internalArray[i];
 				occ++;
 			}
 		}
-
-//		for (int i = 0; i < occ; i++) {
-//			remove(obj);
-//		}
 		
-		for (int i = objectCount; i < objectCount + occ; i++) {
-			internalArray[i] = obj;
+		E[] newInternalArray = (E[])new Object[objectCount];
+		
+		int k = 0;
+		for (int i = 0; i < objectCount; i++) {
+			if (!obj.equals(internalArray[i])) {
+				newInternalArray[k] = internalArray[i];
+				k++;
+			}
 		}
 		
-		objectCount += occ;
+		int j = 0;
+		for (int i = objectCount - occ; i < objectCount; i++) {
+			newInternalArray[i] = occs[j];
+			j++;
+		}
+		
+		internalArray = newInternalArray;
 	}
 
 	/* For testing; your string should output as "[X, X, X, X, ...]" where X, X, X, X, ... are the elements in the ArrayList.

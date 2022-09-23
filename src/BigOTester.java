@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class BigOTester {
 
 	public static void main(String[] args) {
-		final int BIG_NUM = 100000;
+		final int BIG_NUM = 1000000;
 		
 		long startTime = System.currentTimeMillis();
 		ArrayList<Double> listy = new ArrayList<Double>();
