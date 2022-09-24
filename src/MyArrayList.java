@@ -192,21 +192,14 @@ public class MyArrayList<E> {
 	@SuppressWarnings("unchecked")
 	public void moveToBack(E obj)
 	{
-		E[] occs = (E[])new Object[objectCount];
+		E[] occs = (E[])new Object[objectCount], newInternalArray = (E[])new Object[objectCount];
 
-		int occ = 0;
+		int occ = 0, k = 0;
 		for (int i = 0; i < objectCount; i++) {
 			if (obj.equals(internalArray[i])) {
 				occs[occ] = internalArray[i];
 				occ++;
-			}
-		}
-		
-		E[] newInternalArray = (E[])new Object[objectCount];
-		
-		int k = 0;
-		for (int i = 0; i < objectCount; i++) {
-			if (!obj.equals(internalArray[i])) {
+			} else {
 				newInternalArray[k] = internalArray[i];
 				k++;
 			}
