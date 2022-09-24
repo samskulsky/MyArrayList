@@ -187,7 +187,7 @@ public class MyArrayList<E> {
 
 	// This method will search list for all occurrences of obj and move them to the end
 	// of the list without disrupting the order of the other elements.
-	// O(n2)
+	// O(n)
 	// deal with nulls
 	@SuppressWarnings("unchecked")
 	public void moveToBack(E obj)
